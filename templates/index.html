@@ -1,0 +1,58 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Information{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#"> information</a>
+        </div>    
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>Server  information</h1>
+        
+   <div class="container">
+    <form method="POST" action="">
+       {{ form.name.label }} {{ form.name(size=16) }}
+            {% for error in form.name.errors %}
+                {{ error }}
+            {% endfor %}
+            <br>
+            {{ form.submit() }}
+            {{ form.hidden_tag() }}
+        </form>
+    </div>  
+
+
+
+
+      {% if name %}
+        <table class="table table-hover">
+           <tr>
+            <th>id</th>
+            <th>ServerName</th>
+            <th>Service</th>
+            <th>Staff</th>
+            <th>OS</th>
+            <th>RAID</th>
+            <th>Warranty</th>
+            </tr>
+        
+
+           {% for row in data %}
+           <tr>
+               {% for d in row %}
+                  <td>{{ d }}</td>
+                {% endfor %}
+           </tr>
+        
+           {% endfor %}
+
+        </table>
+    </div>    
+     {% endif %}
+{% endblock %}
